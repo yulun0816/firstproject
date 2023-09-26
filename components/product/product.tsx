@@ -33,8 +33,8 @@ export default function Product({ productionsData }: { productionsData: [product
                             <figure>
                                 <Image
                                     src={`/images/products/${items.img}`}
-                                    width={400}
-                                    height={400}
+                                    width={390}
+                                    height={390}
                                     alt=""
                                 />
                                 <figcaption className={productStyle.productFigcaption}>
