@@ -21,22 +21,22 @@ interface HomeInfoType {
   description: string
 }
 
-// export const getStaticProps: GetStaticProps = async (ctx) => {
-//   // const allPostsData = getSortedImageFile("Banner");
-//   // const allHomeInfoData = getSortedImageFile("HomeInfo");
-//   const allPostsData = await (await fetch("http://127.0.0.1:3000/api/carousel")).json();
-//   const allHomeInfoData = await (await fetch("http://127.0.0.1:3000/api/homeinfo")).json();
-//   return {
-//     props: {
-//       allPostsData,
-//       allHomeInfoData
-//     }
-//   }
-// }
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  // const allPostsData = getSortedImageFile("Banner");
+  // const allHomeInfoData = getSortedImageFile("HomeInfo");
+  const allPostsData = await (await fetch("https://firstproject-p3t8lg0lo-yulun0816s-projects.vercel.app/api/carousel")).json();
+  const allHomeInfoData = await (await fetch("https://firstproject-p3t8lg0lo-yulun0816s-projects.vercel.app/api/homeinfo")).json();
+  return {
+    props: {
+      allPostsData,
+      allHomeInfoData
+    }
+  }
+}
 
 // export const getServerSideProps: GetServerSideProps = async () => {
-//   const allPostsData = await (await fetch("http://127.0.0.1:3000/api/carousel")).json();
-//   const allHomeInfoData = await (await fetch("http://127.0.0.1:3000/api/homeinfo")).json();
+//   const allPostsData = await (await fetch("https://firstproject-p3t8lg0lo-yulun0816s-projects.vercel.app/api/carousel")).json();
+//   const allHomeInfoData = await (await fetch("https://firstproject-p3t8lg0lo-yulun0816s-projects.vercel.app/api/homeinfo")).json();
 //   return {
 //     props: {
 //       allPostsData,
