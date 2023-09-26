@@ -1,0 +1,80 @@
+.carousel {
+    position: relative;
+    height: 500px;
+    // display: flex;
+    // align-items: center;
+    overflow: hidden;
+
+    .carouselItem {
+        display: flex;
+        // overflow: hidden;
+        height: 100%;
+    }
+
+    img {
+        min-width: 100%;
+        user-select: none;
+    }
+
+    .chevronIcon {
+        color: rgb(255, 255, 255, 0.3);
+        position: absolute;
+        height: 3rem;
+        width: 3rem;
+        cursor: pointer;
+        top: calc(50% - 25px);
+
+        &.left {
+            left: 10px;
+        }
+        &.right {
+            right: 10px;
+        }
+
+        &:hover {
+            color: rgb(255, 255, 255);
+        }
+    }
+
+    .carouselDots {
+        display: flex;
+        position: relative;
+        margin: -50px 0 0 0;
+        justify-content: center;
+        gap: 1rem;
+
+        li {
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            background: silver;
+            cursor: pointer;
+        }
+    }
+
+    :global(.carouselActive) {
+        background: white;
+    }
+
+    .carouselProcessLine {
+        display: flex;
+        position: relative;
+        margin: -40px 0 0 0;
+        justify-content: center;
+        gap: 0.5rem;
+
+        li {
+            width: 30px;
+            height: 4px;
+            border-bottom: 1px;
+            background: silver;
+            cursor: pointer;
+
+            > div {
+                width: 0%;
+                height: 100%;
+                background: white;
+            }
+        }
+    }
+}

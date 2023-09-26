@@ -1,0 +1,41 @@
+.container {
+    // display: flex;
+    // justify-content: space-evenly;
+    // align-items: flex-start;
+    // width: 80%;
+    // margin: 50px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    width: 80%;
+    margin: 50px auto;
+    justify-items: center;
+    grid-row-gap: 5rem;
+}
+
+.content {
+    line-height: 2;
+    color: #6e6c6b;
+}
+.title {
+    color: #c8aea1;
+    font-weight: bold;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+}
+
+.socialIcon svg {
+    width: 25px;
+    height: 25px;
+    margin: 4px 4px 0;
+    border-radius: 50%;
+}
+
+.footer {
+    display: flex;
+    height: 50px;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #c8aea1;
+    color: #eeeeee;
+    font-size: 11px;
+}

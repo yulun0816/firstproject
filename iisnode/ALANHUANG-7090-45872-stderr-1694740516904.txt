@@ -1,0 +1,12 @@
+(node:45872) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+The requested resource isn't a valid image for /images/profile.jpg received text/html; charset=utf-8
+ImageError: The requested resource isn't a valid image.
+    at imageOptimizer [90m(D:\SidePorject\NextJsProject\nextjs-blog\[39mnode_modules\[4mnext[24m\dist\server\image-optimizer.js:569:19[90m)[39m
+[90m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+    at async cacheEntry.imageResponseCache.get.incrementalCache [90m(D:\SidePorject\NextJsProject\nextjs-blog\[39mnode_modules\[4mnext[24m\dist\server\next-server.js:598:60[90m)[39m
+    at async [90mD:\SidePorject\NextJsProject\nextjs-blog\[39mnode_modules\[4mnext[24m\dist\server\response-cache\index.js:99:36 {
+  statusCode: [33m400[39m
+}
+The requested resource isn't a valid image for /images/profile.jpg received text/html; charset=utf-8
+The requested resource isn't a valid image for /images/profile.jpg received text/html; charset=utf-8

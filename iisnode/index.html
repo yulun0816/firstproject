@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>iisnode logs</title>
+    <style type="text/css">
+        body
+        {
+            font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+        }
+        table
+        {
+            border-collapse: collapse;
+        }
+        td, th
+        {
+            border: 1px solid lightgray;
+            padding: 3px 7px 2px 7px;
+        }
+        th
+        {
+            text-align: left;
+            padding-top: 5px;
+            padding-bottom: 4px;
+            background-color: Gray;
+            color: #ffffff;
+        }
+        td.stderr
+        {
+            color: Red;
+        }
+    </style>
+</head>
+<body>
+    <table id="logFilesTable">
+        <tr>
+            <th>
+                Computer name
+            </th>
+            <th>
+                PID
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Link
+            </th>
+        </tr>
+    </table>
+    <p id="lastUpdated"></p>
+    <script type="text/javascript">
+
+        // this is replaced with actual data at runtime by code in interceptor.js
+        var logFiles = [{"file":"ALANHUANG-7090-10200-stderr-1695717708642.txt","computername":"ALANHUANG-7090","pid":10200,"type":"stderr","created":1695717708642},{"file":"ALANHUANG-7090-13980-stderr-1695717603937.txt","computername":"ALANHUANG-7090","pid":13980,"type":"stderr","created":1695717603937},{"file":"ALANHUANG-7090-19896-stderr-1695717712662.txt","computername":"ALANHUANG-7090","pid":19896,"type":"stderr","created":1695717712662},{"file":"ALANHUANG-7090-28508-stderr-1695717716599.txt","computername":"ALANHUANG-7090","pid":28508,"type":"stderr","created":1695717716599},{"file":"ALANHUANG-7090-31412-stderr-1695717701029.txt","computername":"ALANHUANG-7090","pid":31412,"type":"stderr","created":1695717701029},{"file":"ALANHUANG-7090-38420-stderr-1694679927810.txt","computername":"ALANHUANG-7090","pid":38420,"type":"stderr","created":1694679927810},{"file":"ALANHUANG-7090-38420-stdout-1694679927810.txt","computername":"ALANHUANG-7090","pid":38420,"type":"stdout","created":1694679927810},{"file":"ALANHUANG-7090-40052-stderr-1694679993914.txt","computername":"ALANHUANG-7090","pid":40052,"type":"stderr","created":1694679993914},{"file":"ALANHUANG-7090-40060-stderr-1695717696589.txt","computername":"ALANHUANG-7090","pid":40060,"type":"stderr","created":1695717696589},{"file":"ALANHUANG-7090-45188-stderr-1695717599873.txt","computername":"ALANHUANG-7090","pid":45188,"type":"stderr","created":1695717599873},{"file":"ALANHUANG-7090-45548-stderr-1694680067663.txt","computername":"ALANHUANG-7090","pid":45548,"type":"stderr","created":1694680067663},{"file":"ALANHUANG-7090-45548-stdout-1694680067662.txt","computername":"ALANHUANG-7090","pid":45548,"type":"stdout","created":1694680067662},{"file":"ALANHUANG-7090-45872-stderr-1694740516904.txt","computername":"ALANHUANG-7090","pid":45872,"type":"stderr","created":1694740516904},{"file":"ALANHUANG-7090-45872-stdout-1694740516870.txt","computername":"ALANHUANG-7090","pid":45872,"type":"stdout","created":1694740516870},{"file":"ALANHUANG-7090-48680-stderr-1695717691207.txt","computername":"ALANHUANG-7090","pid":48680,"type":"stderr","created":1695717691207},{"file":"ALANHUANG-7090-51740-stderr-1695717693769.txt","computername":"ALANHUANG-7090","pid":51740,"type":"stderr","created":1695717693769}];
+        var lastUpdated = 1695717716968;
+        var date = new Date();
+
+        date.setTime(lastUpdated);
+        document.getElementById('lastUpdated').innerHTML = 'Index was last updated ' + date;
+
+        logFiles.sort(function (a, b) {
+            return b.created - a.created;
+        });
+
+        var logFilesTable = document.getElementById("logFilesTable");
+        for (var i = 0; i < logFiles.length; i++) {
+            var logFile = logFiles[i];
+            date.setTime(logFile.created);
+            var row = logFilesTable.insertRow(-1);
+            var computerNameCell = row.insertCell(0);
+            var pidCell = row.insertCell(1);
+            var typeCell = row.insertCell(2);
+            var dateCell = row.insertCell(3);
+            var logCell = row.insertCell(4);
+            computerNameCell.innerHTML = logFile.computername;
+            pidCell.innerHTML = logFile.pid.toString();
+            typeCell.innerHTML = logFile.type;
+            typeCell.setAttribute('class', logFile.type);
+            dateCell.innerHTML = date.toString();
+            logCell.innerHTML = '<a href="' + logFile.file + '">log</a>';
+        };
+
+    </script>
+</body>
+</html>
