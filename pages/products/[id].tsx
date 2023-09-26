@@ -5,7 +5,7 @@ import productsStyle from './products.module.scss';
 import Image from 'next/image';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const api = await fetch('https://firstproject-p3t8lg0lo-yulun0816s-projects.vercel.app/api/products', {
+    const api = await fetch('https://firstproject-sigma-black.vercel.app/api/products', {
         method: "POST",
         body: JSON.stringify({ filter: 'id' }),
         headers: {
@@ -21,7 +21,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const api = await fetch('https://firstproject-p3t8lg0lo-yulun0816s-projects.vercel.app/api/products', {
+    const api = await fetch('https://firstproject-sigma-black.vercel.app/api/products', {
         method: "POST",
         body: JSON.stringify({ id: params.id }),
         headers: {

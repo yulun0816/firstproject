@@ -24,8 +24,8 @@ interface HomeInfoType {
 export const getStaticProps: GetStaticProps = async (ctx) => {
   // const allPostsData = getSortedImageFile("Banner");
   // const allHomeInfoData = getSortedImageFile("HomeInfo");
-  const allPostsData = await (await fetch("https://firstproject-p3t8lg0lo-yulun0816s-projects.vercel.app/api/carousel")).json();
-  const allHomeInfoData = await (await fetch("https://firstproject-p3t8lg0lo-yulun0816s-projects.vercel.app/api/homeinfo")).json();
+  const allPostsData = await (await fetch("https://firstproject-sigma-black.vercel.app/api/carousel")).json();
+  const allHomeInfoData = await (await fetch("https://firstproject-sigma-black.vercel.app/api/homeinfo")).json();
   return {
     props: {
       allPostsData,
@@ -35,8 +35,8 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 }
 
 // export const getServerSideProps: GetServerSideProps = async () => {
-//   const allPostsData = await (await fetch("https://firstproject-p3t8lg0lo-yulun0816s-projects.vercel.app/api/carousel")).json();
-//   const allHomeInfoData = await (await fetch("https://firstproject-p3t8lg0lo-yulun0816s-projects.vercel.app/api/homeinfo")).json();
+//   const allPostsData = await (await fetch("https://firstproject-sigma-black.vercel.app/api/carousel")).json();
+//   const allHomeInfoData = await (await fetch("https://firstproject-sigma-black.vercel.app/api/homeinfo")).json();
 //   return {
 //     props: {
 //       allPostsData,

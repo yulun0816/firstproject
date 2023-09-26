@@ -5,7 +5,7 @@ import { GetStaticProps } from 'next';
 import { productType } from '@/model/customType';
 
 export const getStaticProps: GetStaticProps = async () => {
-    const productionsData = await (await fetch('https://firstproject-p3t8lg0lo-yulun0816s-projects.vercel.app/api/products')).json();
+    const productionsData = await (await fetch('https://firstproject-sigma-black.vercel.app/api/products')).json();
     return {
         props: {
             productionsData
