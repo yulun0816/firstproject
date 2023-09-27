@@ -38,7 +38,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export default function Product({ postData }: { postData: productType }) {
-    console.log(postData)
     return (
         <Layout>
             <div className={productsStyle.container}>

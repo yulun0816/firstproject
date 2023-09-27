@@ -1,14 +1,16 @@
 .carousel {
     position: relative;
-    height: 500px;
+    // height: 500px;
     // display: flex;
     // align-items: center;
     overflow: hidden;
+    max-width: 100%;
+    max-height: 100%;
 
     .carouselItem {
         display: flex;
         // overflow: hidden;
-        height: 100%;
+        height: auto;
     }
 
     img {
@@ -59,7 +61,7 @@
     .carouselProcessLine {
         display: flex;
         position: relative;
-        margin: -40px 0 0 0;
+        bottom: 30px;
         justify-content: center;
         gap: 0.5rem;
 
