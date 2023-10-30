@@ -3,8 +3,12 @@ import Image from 'next/image';
 import navbarStyles from './navbar.module.scss';
 import utilsStyles from '../../styles/utils.module.css';
 import { FaCartShopping, FaUser } from "react-icons/fa6";
+import { getCartCount } from 'reducer/projectReducer';
+import { useSelector } from 'react-redux';
 
 export default function NavBar() {
+    const cartCount = useSelector(getCartCount);
+    console.log(cartCount)
     return (
         <div className={navbarStyles.container}>
             <Link href="/" className={navbarStyles.titleIcon}>
@@ -29,7 +33,12 @@ export default function NavBar() {
                     <Link href="/posts/pre-rendering"><span>關於公司</span></Link>
                 </li>
                 <li>
-                    <Link href="/posts/pre-rendering"><FaCartShopping /></Link>
+                    <Link href="/posts/pre-rendering" className={utilsStyles.posRelative}>
+                        <FaCartShopping />
+                        {
+                            cartCount !== null && cartCount > 0 && <div className={navbarStyles.cartCount}>{cartCount}</div>
+                        }
+                    </Link>
                 </li>
                 <li>
                     <Link href="/posts/pre-rendering"><FaUser /></Link>

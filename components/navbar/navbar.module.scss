@@ -50,7 +50,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
     justify-items: center;
-
+    align-items: center;
+    
     li {
         color: #616161;
 
@@ -66,5 +67,18 @@
                 }
             }
         }
+    }
+
+    .cartCount {
+        position: absolute;
+        top: -12px;
+        left: 10px;
+        background: #3e9d72;
+        color: white;
+        border-radius: 50px;
+        height: 16px;
+        font-size: 11px;
+        text-align: center;
+        padding: 2px 5px 0;
     }
 }
