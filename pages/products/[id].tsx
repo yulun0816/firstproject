@@ -1,11 +1,22 @@
 import Layout from '@/components/layout/layout';
 import { GetStaticProps, GetServerSideProps, GetStaticPaths } from 'next';
-import { productType } from '@/model/customType';
+import { productType, paramsState } from '@/model/customType';
 import productsStyle from './products.module.scss';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { getCartCount, setCartCount } from 'reducer/projectReducer';
+import { getCartItem, setCartItem } from 'reducer/projectReducer';
 import { useSelector, useDispatch } from 'react-redux';
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Fade from '@mui/material/Fade';
+import Slide, { SlideProps } from '@mui/material/Slide';
+import Alert from '@mui/material/Alert';
+
+function SlideTransition(props: SlideProps) {
+    return <Slide {...props} direction="up" />;
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const api = await fetch('https://firstproject-sigma-black.vercel.app/api/products', {
@@ -41,7 +52,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export default function Product({ postData }: { postData: productType }) {
-    const cartCount = useSelector(getCartCount);
+    const [open, setOpen] = React.useState(false);
+    const cartItem = useSelector(getCartItem);
     const dispatch = useDispatch();
 
     const [count, setCount] = useState(1);
@@ -69,8 +81,25 @@ export default function Product({ postData }: { postData: productType }) {
     }
 
     const handlerCartAdd = () => {
-        dispatch(setCartCount(cartCount + count))
+        const existingItemIndex = cartItem.findIndex(item => item.id === postData.id);
+        if (existingItemIndex !== -1) {
+            const updateData = [...cartItem];
+            updateData[existingItemIndex] = { ...updateData[existingItemIndex], count: updateData[existingItemIndex].count + count }
+            console.log(updateData[existingItemIndex])
+            dispatch(setCartItem(updateData))
+        } else {
+            dispatch(setCartItem([...cartItem, { id: postData.id, count: count }]))
+        }
+        setOpen(true);
     }
+
+    const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
 
     return (
         <Layout>
@@ -103,8 +132,15 @@ export default function Product({ postData }: { postData: productType }) {
                         </div>
                     </div>
                 </div>
-
             </div>
+            <Snackbar
+                open={open}
+                autoHideDuration={1000}
+                onClose={handleClose}
+                TransitionComponent={SlideTransition}
+            >
+                <Alert severity="success">已成功加入購物車</Alert>
+            </Snackbar>
         </Layout>
     )
 }

@@ -5,3 +5,10 @@ export interface productType {
     price: number,
     desc: string
 }
+export interface CartItem {
+    id: number;
+    count: number;
+}
+export interface paramsState {
+    cartItem: CartItem[];
+}
