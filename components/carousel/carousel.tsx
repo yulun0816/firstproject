@@ -6,11 +6,10 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 export default function Carousel({ allPostsData }: { allPostsData: [{ id: string, name: string }]; }) {
     const carouselItemRef = useRef(null);
     const carouselDotRef = useRef(null);
-    const [intervalTime, setIntervalTime] = useState(3000);
+    const time = useRef(0);
+    const intervalTime = 3000;
     const [carouselIndex, setCarouselIndex] = useState(0);
-    const [intervalCarousel, setIntervalCarousel] = useState(null);
     const [intervalProcess, setIntervalProcess] = useState(null);
-    const [time, setTime] = useState(0);
 
     useEffect(() => {
         let lastImg = carouselItemRef.current.lastElementChild.cloneNode(true);
@@ -23,17 +22,24 @@ export default function Carousel({ allPostsData }: { allPostsData: [{ id: string
         carouselDotRef.current.querySelector('.carouselActive').firstElementChild.style.transition = `${intervalTime / 1000}s linear`
         carouselDotRef.current.querySelector('.carouselActive').firstElementChild.style.width = '100%';
 
-        nextCarouselControl();
+        setCarouselIndex(0);
 
         return () => {
             carouselEnter();
         }
     }, [])
 
+    useEffect(() => {
+        moveTo(carouselIndex);
+    }, [carouselIndex])
+
+
+    useEffect(() => {
+        return () => clearInterval(intervalProcess);
+    }, [intervalProcess])
+
     const carouselEnter = () => {
-        clearInterval(intervalCarousel);
         clearInterval(intervalProcess);
-        setIntervalCarousel(null);
         setIntervalProcess(null)
     }
 
@@ -42,10 +48,6 @@ export default function Carousel({ allPostsData }: { allPostsData: [{ id: string
         setIntervalProcess(null)
         moveTo(carouselIndex, true);
     }
-
-    useEffect(() => {
-        moveTo(carouselIndex);
-    }, [carouselIndex])
 
     const moveTo = (index: number, isReEnter: boolean = false) => {
         let carouselActive = carouselDotRef.current.querySelector('.carouselActive');
@@ -57,21 +59,18 @@ export default function Carousel({ allPostsData }: { allPostsData: [{ id: string
         if (!isReEnter) {
             carouselActive.firstElementChild.style.transition = 'none'
             carouselActive.firstElementChild.style.width = '0%';
-            setTime(0);
+            time.current = 0;
         }
         carouselActive.classList.remove('carouselActive');
         elementLi.classList.add('carouselActive');
 
         clearInterval(intervalProcess);
         const processInterval = setInterval(() => {
-            setTime((prev) => {
-                const newTime = prev + (100 / intervalTime) * 100;
-                elementLi.querySelector('div').style.width = `${newTime}%`;
-                if (newTime > 100) {
-                    nextCarouselControl();
-                }
-                return newTime;
-            });
+            time.current = time.current + (100 / intervalTime) * 100;
+            elementLi.querySelector('div').style.width = `${time.current}%`;
+            if (time.current > 100) {
+                nextCarouselControl();
+            }
         }, 100)
 
         setIntervalProcess(processInterval);
@@ -102,7 +101,7 @@ export default function Carousel({ allPostsData }: { allPostsData: [{ id: string
     }
 
     const carouselDotClick = (index) => {
-        moveTo(index)
+        setCarouselIndex(index)
     }
 
     return (
