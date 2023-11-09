@@ -13,6 +13,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import Fade from '@mui/material/Fade';
 import Slide, { SlideProps } from '@mui/material/Slide';
 import Alert from '@mui/material/Alert';
+import { CartCountBtn } from '@/components/common/Common';
+
 
 function SlideTransition(props: SlideProps) {
     return <Slide {...props} direction="up" />;
@@ -85,7 +87,6 @@ export default function Product({ postData }: { postData: productType }) {
         if (existingItemIndex !== -1) {
             const updateData = [...cartItem];
             updateData[existingItemIndex] = { ...updateData[existingItemIndex], count: updateData[existingItemIndex].count + count }
-            console.log(updateData[existingItemIndex])
             dispatch(setCartItem(updateData))
         } else {
             dispatch(setCartItem([...cartItem, { id: postData.id, count: count }]))
@@ -122,11 +123,13 @@ export default function Product({ postData }: { postData: productType }) {
                         <div className={productsStyle.productName}>{postData.name}</div>
                         <div className={productsStyle.productDesc} dangerouslySetInnerHTML={{ __html: postData.desc }}></div>
                         <div className={productsStyle.productPrice}>NT${postData.price}</div>
-                        <div>
-                            <input type="button" value="-" className={productsStyle.cartMinusPlusBtn} onClick={() => handlerMinusAndPlus("minus")} />
-                            <input className={productsStyle.cartNumber} type="number" min="1" name="quantity" value={count} title="數量" size={4} inputMode="numeric" autoComplete="off" onChange={(e) => handlerInputChange(e)} />
-                            <input type="button" value="+" className={productsStyle.cartMinusPlusBtn} onClick={() => handlerMinusAndPlus("plus")} />
-                        </div>
+                        <CartCountBtn
+                            handlerMinus={() => handlerMinusAndPlus("minus")}
+                            handlerPlus={() => handlerMinusAndPlus("plus")}
+                            handlerInputChange={(e) => handlerInputChange(e)}
+                            min={1}
+                            value={count}
+                        />
                         <div>
                             <button className={productsStyle.cartAddBtn} onClick={handlerCartAdd}>加入購物車</button>
                         </div>
